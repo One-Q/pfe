@@ -10,6 +10,7 @@ const debug = require('debug')('express-mongoose-es6-rest-api:index');
 // make bluebird default Promise
 Promise = require('bluebird'); // eslint-disable-line no-global-assign
 
+//C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe
 // plugin bluebird promise in mongoose
 mongoose.Promise = Promise;
 
