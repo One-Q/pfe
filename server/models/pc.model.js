@@ -3,48 +3,73 @@ import mongoose from 'mongoose';
 import httpStatus from 'http-status';
 import APIError from '../helpers/APIError';
 
-/**
- * User Schema
+/*
+ * PC Schema
  */
-const UserSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    required: true
-  },
-  mobileNumber: {
-    type: String,
-    required: true,
-    match: [/^[1-9][0-9]{9}$/, 'The value of path {PATH} ({VALUE}) is not a valid mobile number.']
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  }
+const PCSchema = new mongoose.Schema({
+    Name: {
+        type: String,
+        required: true
+    },
+    Local: {
+        type: String,
+        required: true
+    },
+    IP: {
+        type: String,
+        required: true
+    },
+    MAC: {
+        type: String,
+        required: true
+    },
+    Comment: {
+        type: String,
+        required: true
+    },
+    Active: {
+        type: Boolean,
+        required: true
+    },
+    Problem: {
+        type: {
+            User: {
+                type: String,
+                required: true
+            },
+            Description: {
+                type: String,
+                required: true
+            },
+            DateCreated: {
+                type: Date,
+                required: true,
+                default: Date.now
+            },
+            Image: {
+                type: String
+            }
+        },
+        required: false
+    }
 });
-
-/**
- * Add your
- * - pre-save hooks
- * - validations
- * - virtuals
- */
 
 /**
  * Methods
  */
-UserSchema.method({
+PCSchema.method({
 });
 
 /**
  * Statics
  */
-UserSchema.statics = {
+PCSchema.statics = {
   /**
-   * Get user
+   * Get PC
    * @param {ObjectId} id - The objectId of user.
    * @returns {Promise<User, APIError>}
    */
-  get(id) {
+  /*get(id) {
     return this.findById(id)
       .exec()
       .then((user) => {
@@ -54,7 +79,7 @@ UserSchema.statics = {
         const err = new APIError('No such user exists!', httpStatus.NOT_FOUND);
         return Promise.reject(err);
       });
-  },
+  },*/
 
   /**
    * List users in descending order of 'createdAt' timestamp.
@@ -62,16 +87,16 @@ UserSchema.statics = {
    * @param {number} limit - Limit number of users to be returned.
    * @returns {Promise<User[]>}
    */
-  list({ skip = 0, limit = 50 } = {}) {
+  /*list({ skip = 0, limit = 50 } = {}) {
     return this.find()
       .sort({ createdAt: -1 })
       .skip(+skip)
       .limit(+limit)
       .exec();
-  }
+  }*/
 };
 
 /**
- * @typedef User
- */
-export default mongoose.model('User', UserSchema);
+* @typedef PC
+*/
+export default mongoose.model('PC', PCSchema);
