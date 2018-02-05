@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 import util from 'util';
 
+//!\ Import à supprimer lorsque la db se remplira automatiquement
+import feedDb from './server/feedDb';
 
 // config should be imported before importing any other file
 import config from './server/config/config';
@@ -17,7 +19,10 @@ mongoose.Promise = Promise;
 
 // connect to mongo db
 const mongoUri = config.mongo.host;
-mongoose.connect(mongoUri, { server: { socketOptions: { keepAlive: 1 } } });
+mongoose.connect(mongoUri, { server: { socketOptions: { keepAlive: 1 } } }).then(() => {
+  //!\ Import à supprimer lorsque la db se remplira automatiquement
+  feedDb();
+});
 mongoose.connection.on('error', () => {
   throw new Error(`unable to connect to database: ${mongoUri}`);
 });
@@ -31,9 +36,9 @@ if (config.MONGOOSE_DEBUG) {
 // module.parent check is required to support mocha watch
 // src: https://github.com/mochajs/mocha/issues/1912
 
-  // listen on port config.port
-  app.listen(config.port, () => {
-    console.info(`server started on port ${config.port} (${config.env})`); // eslint-disable-line no-console
-  });
+// listen on port config.port
+app.listen(config.port, () => {
+  console.info(`server started on port ${config.port} (${config.env})`); // eslint-disable-line no-console
+});
 
 export default app;
