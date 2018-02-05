@@ -1,12 +1,12 @@
 import PC from '../models/pc.model';
 
 /**
- * Load user and append to req.
+ * Load PC and append to req.
  */
-function load(req, res, next, id) {
-  User.get(id)
-    .then((user) => {
-      req.user = user; // eslint-disable-line no-param-reassign
+function load(req, res, next, name) {
+  PC.get(name)
+    .then((pc) => {
+      req.pc = pc; // eslint-disable-line no-param-reassign
       return next();
     })
     .catch(e => next(e));
@@ -18,6 +18,14 @@ function load(req, res, next, id) {
  */
 function get(req, res) {
   return res.json(req.user);
+}
+
+/**
+ * Import list of PC
+ * @returns true if everything works
+ */
+function imports(req, res) {
+  return true;
 }
 
 /**
@@ -61,8 +69,8 @@ function update(req, res, next) {
  */
 function list(req, res, next) {
   const { limit = 50, skip = 0 } = req.query;
-  User.list({ limit, skip })
-    .then(users => res.json(users))
+  PC.list({ limit, skip })
+    .then(pc => res.json(pc))
     .catch(e => next(e));
 }
 
@@ -77,4 +85,4 @@ function remove(req, res, next) {
     .catch(e => next(e));
 }
 
-export default { load, get, create, update, list, remove };
+export default { load, imports, get, create, update, list, remove };

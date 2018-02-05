@@ -69,8 +69,8 @@ PCSchema.statics = {
    * @param {ObjectId} id - The objectId of user.
    * @returns {Promise<User, APIError>}
    */
-  /*get(id) {
-    return this.findById(id)
+  get(name) {
+    return this.findOne({Name:name})
       .exec()
       .then((user) => {
         if (user) {
@@ -79,21 +79,23 @@ PCSchema.statics = {
         const err = new APIError('No such user exists!', httpStatus.NOT_FOUND);
         return Promise.reject(err);
       });
-  },*/
+  },
 
   /**
-   * List users in descending order of 'createdAt' timestamp.
-   * @param {number} skip - Number of users to be skipped.
-   * @param {number} limit - Limit number of users to be returned.
-   * @returns {Promise<User[]>}
+   * List pc
+   * @param {number} skip - Number of pc to be skipped.
+   * @param {number} limit - Limit number of pc to be returned.
+   * @returns {Promise<PC[]>}
    */
-  /*list({ skip = 0, limit = 50 } = {}) {
-    return this.find()
-      .sort({ createdAt: -1 })
-      .skip(+skip)
-      .limit(+limit)
+  list({ skip = 0, limit = 50 } = {}) {
+    console.log("list has been called");
+    console.log(this);
+    return this.find({Active : true})
+      .distinct("Name")
+      //.skip(+skip)
+      //.limit(+limit)
       .exec();
-  }*/
+  }
 };
 
 /**

@@ -10,14 +10,14 @@ router.route('/')
   .get(pcCtrl.list)
 
   /** POST /api/pc - import new PC list */
-  .post(validate(paramValidation.importPCList), pcCtrl.import);
+  .post(validate(paramValidation.importPCList), pcCtrl.imports);
 
 router.route('/:pcName')
   /** GET /api/pc/:pcName - Get PC */
   .get(pcCtrl.get)
 
 
-/** Load user when API with userId route parameter is hit */
-router.param('userId', userCtrl.load);
+/** Load PC when API with pcName route parameter is hit */
+router.param('pcName', pcCtrl.load);
 
 export default router;
