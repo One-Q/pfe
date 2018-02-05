@@ -46,12 +46,13 @@ export default {
 
   //POST /api/pc
   importPCList: {
-    body: { //TODO : must be an array
-      Name: Joi.string().required(),
+    body: { //TODO : verify elements
+      import : Joi.array().required(),
+      /*Name: Joi.string().required(),
       Local: Joi.string().required(),
       IP: Joi.string().required(),
       MAC: Joi.string().required(),
-      Comment: Joi.string().required()
+      Comment: Joi.string().required()*/
     }
   }
 };

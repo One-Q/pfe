@@ -17,55 +17,54 @@ function load(req, res, next, name) {
  * @returns {User}
  */
 function get(req, res) {
-  return res.json(req.user);
+  return res.json(req.pc);
 }
 
 /**
  * Import list of PC
  * @returns true if everything works
  */
-function imports(req, res) {
-  return true;
-}
-
-/**
- * Create new user
- * @property {string} req.body.username - The username of user.
- * @property {string} req.body.mobileNumber - The mobileNumber of user.
- * @returns {User}
- */
-function create(req, res, next) {
-  const user = new User({
-    username: req.body.username,
-    mobileNumber: req.body.mobileNumber
+function imports(req, res, next) {
+  req.body.import.forEach(function(pc) {
+    pc.Active = true;
+    importPC(pc,res, next);
   });
-
-  user.save()
-    .then(savedUser => res.json(savedUser))
-    .catch(e => next(e));
 }
 
 /**
- * Update existing user
- * @property {string} req.body.username - The username of user.
- * @property {string} req.body.mobileNumber - The mobileNumber of user.
- * @returns {User}
+ * Create a new PC
  */
-function update(req, res, next) {
-  const user = req.user;
-  user.username = req.body.username;
-  user.mobileNumber = req.body.mobileNumber;
-
-  user.save()
-    .then(savedUser => res.json(savedUser))
-    .catch(e => next(e));
+function importPC(pc, res, next) {
+  PC.findOne({Name:pc.Name,Active:true}).exec()
+  .then((oldPC)=>{
+    //update
+    if(pc != oldPC){
+      oldPC.Active = false;
+      oldPC.save();
+    }
+    pc = new PC(pc);
+    pc.save()
+    .then(savedPC => {
+      res.json(savedPC);
+      next();
+    }).catch(e => {next(e);});;
+  }).catch((err)=>{
+    //new PC
+    pc = new PC(pc);
+    pc.save()
+    .then(savedPC => {
+      res.json(savedPC);
+      next();
+    }).catch(e => {next(e);});;
+  });
 }
+
 
 /**
  * Get user list.
  * @property {number} req.query.skip - Number of users to be skipped.
  * @property {number} req.query.limit - Limit number of users to be returned.
- * @returns {User[]}
+ * @returns {PC[]}
  */
 function list(req, res, next) {
   const { limit = 50, skip = 0 } = req.query;
@@ -75,14 +74,14 @@ function list(req, res, next) {
 }
 
 /**
- * Delete user.
- * @returns {User}
+ * Delete pc.
+ * @returns {PC}
  */
 function remove(req, res, next) {
-  const user = req.user;
-  user.remove()
-    .then(deletedUser => res.json(deletedUser))
+  const pc = req.pc;
+  pc.remove()
+    .then(deletedPC => res.json(deletedPC))
     .catch(e => next(e));
 }
 
-export default { load, imports, get, create, update, list, remove };
+export default { load, imports, get, list, remove };

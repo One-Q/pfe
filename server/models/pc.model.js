@@ -76,7 +76,7 @@ PCSchema.statics = {
         if (user) {
           return user;
         }
-        const err = new APIError('No such user exists!', httpStatus.NOT_FOUND);
+        const err = new APIError('No such PC exists!', httpStatus.NOT_FOUND);
         return Promise.reject(err);
       });
   },
@@ -88,12 +88,10 @@ PCSchema.statics = {
    * @returns {Promise<PC[]>}
    */
   list({ skip = 0, limit = 50 } = {}) {
-    console.log("list has been called");
-    console.log(this);
     return this.find({Active : true})
-      .distinct("Name")
-      //.skip(+skip)
-      //.limit(+limit)
+      //.distinct("Name")
+      .skip(+skip)
+      .limit(+limit)
       .exec();
   }
 };
