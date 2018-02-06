@@ -4,7 +4,7 @@
       <form [formGroup]="form" (ngSubmit)="submitForm()">
         <p>
           <mat-form-field class="inputFW">
-            <input matInput formControlName="mail" placeholder="Adresse email">
+            <input matInput formControlName="User" placeholder="Adresse email">
             <mat-error>This field is required</mat-error>
           </mat-form-field>
         </p>
@@ -16,7 +16,7 @@
         </p>
         <p>
           <mat-form-field class="inputFW">
-            <textarea matInput placeholder="Description du problème (max 200 caractères)" formControlName="description" rows="3"></textarea>
+            <textarea matInput placeholder="Description du problème (max 200 caractères)" formControlName="Description" rows="3"></textarea>
           </mat-form-field>
         </p>
         <p>

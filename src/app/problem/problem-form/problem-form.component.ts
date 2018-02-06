@@ -42,14 +42,14 @@ export class ProblemFormComponent implements OnInit, OnDestroy {
 
   constructForm(){
     this.form = this.formBuilder.group({
-      mail: ['', [
+      User: ['', [
         Validators.required,
         this.validateEmail
       ]],
-      machineName: [this.machineName, [
+      Name: [this.machineName, [
         Validators.required,
       ]],
-      description:['', [
+      Description:['', [
         Validators.required,
         this.validateDesc
       ]]
@@ -77,7 +77,11 @@ export class ProblemFormComponent implements OnInit, OnDestroy {
 
   submitForm(){
     if(this.form.valid){
-      console.log('Form is valid')
+      let obj = this.form.value
+      obj.image = this.image
+      this.service.createProblem(obj).subscribe(data => console.log(data), err => {console.log(err)})
+    }else{
+      console.log("erreur")
     }
   }
 

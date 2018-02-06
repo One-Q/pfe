@@ -23,6 +23,6 @@ router.route('/')
   .get(pbCtrl.list)
 
   /** POST /api/problem - create a new problem */
-  .post(validate(paramValidation.problem), upload.single('image'), pbCtrl.create);
+  .post(/*validate(paramValidation.problem), */upload.single('image'), pbCtrl.create);
 
 export default router;
