@@ -1,0 +1,29 @@
+<div class="problemContainer">
+  <div class="problemForm">
+      <h2>Soumission de problème</h2>
+      <form [formGroup]="form" (ngSubmit)="submitForm()">
+        <p>
+          <mat-form-field class="inputFW">
+            <input matInput formControlName="mail" placeholder="Adresse email">
+            <mat-error>This field is required</mat-error>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="inputFW">
+            <input matInput value="{{machineName}}" placeholder="Nom de la machine" disabled>
+            <mat-error>Le nom de la machine est requis</mat-error>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field class="inputFW">
+            <textarea matInput placeholder="Description du problème (max 200 caractères)" formControlName="description" rows="3"></textarea>
+          </mat-form-field>
+        </p>
+        <p>
+          <label>Image (Optionnel)</label><br><br>
+          <input type="file" (change)="fileChange($event)" name="image" />
+        </p>
+        <button mat-raised-button color="primary">Envoyer</button>
+      </form>
+  </div>
+</div>

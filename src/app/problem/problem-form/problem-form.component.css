@@ -1,0 +1,26 @@
+h2 {
+  color: #686B79;
+}
+
+.problemContainer {
+  margin-top: 50px;
+}
+
+.problemForm {
+  margin: 0 auto;
+  width: 500px;
+}
+
+.problemForm form {
+  min-width: 100px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.problemForm .inputFW {
+  width: 100%;
+}
+
+label {
+  color: rgba(0, 0, 0, 0.54);
+}
