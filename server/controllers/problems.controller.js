@@ -22,6 +22,9 @@ function list(req, res, next) {
  * @returns {PC}
  */
 function create(req, res, next) {
+    let photo
+    if(req.file != null)
+        photo = req.file.filename
     PC.findOne({ Name: req.body.Name, Active: true }, { '_id': 0 }).exec()
         .then((pc) => {
             if (pc == null)
@@ -33,15 +36,17 @@ function create(req, res, next) {
                 MAC: pc.MAC,
                 Comment: pc.Comment,
                 Active: pc.Active,
-                Problem: { User: req.body.User, Description: req.body.Description, Image: req.body.Image }
+                Problem: { User: req.body.User, Description: req.body.Description, Image: photo }
             })
             newPc.save()
                 .then(savedPC => {
                     res.json(savedPC);
                     //return next();
-                }).catch(e => { /*next(e);*/ });;
+                }).catch(e => { next(e); });;
+                
         })
         .catch((err) => {
+            console.log(err)
             res.sendStatus(400)
         })
 }

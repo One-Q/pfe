@@ -62,8 +62,7 @@ export default {
     body : {
       Name : Joi.string().required(),
       User : Joi.string().email().required(),
-      Description : Joi.string().required(),
-      Image : Joi.string()
+      Description : Joi.string().required()
     }
   }
 };
