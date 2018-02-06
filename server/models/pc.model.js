@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import httpStatus from 'http-status';
 import APIError from '../helpers/APIError';
 
-/**
+/*
  * PC Schema
  */
 const PCSchema = new mongoose.Schema({
@@ -53,6 +53,48 @@ const PCSchema = new mongoose.Schema({
         required: false
     }
 });
+
+/**
+ * Methods
+ */
+PCSchema.method({
+});
+
+/**
+ * Statics
+ */
+PCSchema.statics = {
+  /**
+   * Get PC
+   * @param {ObjectId} id - The objectId of user.
+   * @returns {Promise<User, APIError>}
+   */
+  get(name) {
+    return this.findOne({Name:name})
+      .exec()
+      .then((user) => {
+        if (user) {
+          return user;
+        }
+        const err = new APIError('No such PC exists!', httpStatus.NOT_FOUND);
+        return Promise.reject(err);
+      });
+  },
+
+  /**
+   * List pc
+   * @param {number} skip - Number of pc to be skipped.
+   * @param {number} limit - Limit number of pc to be returned.
+   * @returns {Promise<PC[]>}
+   */
+  list({ skip = 0, limit = 50 } = {}) {
+    return this.find({Active : true})
+      //.distinct("Name")
+      .skip(+skip)
+      .limit(+limit)
+      .exec();
+  }
+};
 
 /**
 * @typedef PC

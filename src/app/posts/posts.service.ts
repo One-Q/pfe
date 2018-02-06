@@ -17,6 +17,7 @@ export class PostsService {
     }
 
     get(): ApolloQueryObservable<PostsInterface> {
+        
         // Query posts data with observable variables
         this.posts = this.apollo.watchQuery<PostsInterface>({
             query: GetPostsQuery,
