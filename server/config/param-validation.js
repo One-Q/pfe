@@ -49,11 +49,11 @@ export default {
     body: {
       import : Joi.array().items(Joi.object().keys({
         Name: Joi.string().required(),
-        Local: Joi.string().required(),
         IP: Joi.string().required(),
         MAC: Joi.string().required(),
         Comment: Joi.string().required()
-      })).min(0).required()
+      })).min(0).required(),
+      Local : Joi.string().required()
     }
   }
 };

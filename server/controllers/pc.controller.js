@@ -25,43 +25,75 @@ function get(req, res) {
  * @returns true if everything works
  */
 function imports(req, res, next) {
-  req.body.import.forEach(function(pc) {
-    pc.Active = true;
-    importPC(pc,res, next);
+  var promises = [];
+  PC.find({Local:req.body.Local}).exec()
+  .then(oldPCs=>{
+    //Desactivate PC from the local
+    oldPCs.forEach(oldPC=>{
+      oldPC.Activate = false;
+      promises.push(oldPC.save());
+    });
+  });
+  Promise.all(promises).then(function(){
+    var nbrPc = 0;
+    var array = [];
+    req.body.import.forEach(function(pc) {
+      nbrPc++;
+      pc.Active = true;
+      pc.Local = req.body.Local;
+      return importPC(pc, res, function(err,ret){
+        if(!err){
+          array.push(ret);
+        }else{
+          console.log("err !");
+          console.log(err);
+        }
+        nbrPc --;
+        if(nbrPc <= 0){
+          res.json(array);
+          //next();
+        }
+      });
+    });
+    //next();
   });
 }
 
 /**
- * Create a new PC
+ * Import a PC
  */
-function importPC(pc, res, next) {
-  PC.findOne({Name:pc.Name,Active:true}).exec()
-  .then((oldPC)=>{
-    //update
-    if(pc != oldPC){
-      oldPC.Active = false;
-      oldPC.save();
+function importPC(pc, res, finish) {
+  PC.find({Name:pc.Name}).exec()
+  .then(oldPCs=>{
+    console.log(oldPCs.length);
+    if(oldPCs.length <= 0){
+      //new PC
+      console.log(pc.Name+" new");
+      //console.log(err);
+      pc = new PC(pc);
+      return pc.save()
+      .then(savedPC => {
+        finish(null,savedPC);
+      }).catch(e=>finish(e));
     }
-    pc = new PC(pc);
-    pc.save()
-    .then(savedPC => {
-      res.json(savedPC);
-      next();
-    }).catch(e => {next(e);});;
-  }).catch((err)=>{
-    //new PC
-    pc = new PC(pc);
-    pc.save()
-    .then(savedPC => {
-      res.json(savedPC);
-      next();
-    }).catch(e => {next(e);});;
+    console.log(pc.Name+" update");
+    oldPCs.forEach(function(oldPC){
+      console.log(oldPC.Name+" oldPC");
+      //update
+      oldPC.MAC = pc.MAC;
+      oldPC.IP = pc.IP;
+      oldPC.Local = pc.Local;
+      oldPC.Comment = pc.Comment;
+      oldPC.Active = pc.Active;
+      return oldPC.save().catch((e)=>{console.log("error save")});
+    });
+    finish(null,pc);
   });
 }
 
 
 /**
- * Get user list.
+ * Get pc list.
  * @property {number} req.query.skip - Number of users to be skipped.
  * @property {number} req.query.limit - Limit number of users to be returned.
  * @returns {PC[]}

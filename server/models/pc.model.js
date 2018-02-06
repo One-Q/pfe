@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 import httpStatus from 'http-status';
 import APIError from '../helpers/APIError';
 
+const equal = require('deep-equal');
+
 /*
  * PC Schema
  */
@@ -88,13 +90,32 @@ PCSchema.statics = {
    * @returns {Promise<PC[]>}
    */
   list({ skip = 0, limit = 50 } = {}) {
-    return this.find({Active : true})
-      //.distinct("Name")
+    return this.find({Active : true},{Problem:0,_id:0})
+      //.distinct(["Name","Local","IP","MAC","Comment"])
+      .sort({ Local:1, Name:1  })
       .skip(+skip)
       .limit(+limit)
-      .exec();
+      .exec()
+      .then(val=>{
+        //TODO : filter duplicate
+        var ret = [];
+        val.forEach(function(elementInVal) {
+            var putInside = true;
+            ret.forEach(function(elementInRet){
+                if(equal(elementInRet, elementInVal)){
+                    putInside = false;
+                }
+            });
+            if(putInside){
+                ret.push(elementInVal);
+            }
+        });
+        console.log(ret);
+        return ret;
+      });
   }
 };
+
 
 /**
 * @typedef PC
