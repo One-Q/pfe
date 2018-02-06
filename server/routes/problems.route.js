@@ -10,6 +10,6 @@ router.route('/')
   .get(pbCtrl.list)
 
   /** POST /api/problem - create a new problem */
-  //.post(/*validate(paramValidation.importPCList), pcCtrl.imports*/);
+  .post(validate(paramValidation.problem), pbCtrl.create);
 
 export default router;
