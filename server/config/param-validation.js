@@ -55,5 +55,14 @@ export default {
         Comment: Joi.string().required()
       })).min(0).required()
     }
+  },
+
+  //POST /api/problems
+  problem : {
+    body : {
+      Name : Joi.string().required(),
+      User : Joi.string().email().required(),
+      Description : Joi.string().required()
+    }
   }
 };

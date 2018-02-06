@@ -2,6 +2,7 @@ import express from 'express';
 import userRoutes from './user.route';
 import authRoutes from './auth.route';
 import postRoutes from './post.route';
+import pbRoutes from './problems.route';
 import pcRoutes from './pc.route';
 
 const router = express.Router(); // eslint-disable-line new-cap
@@ -19,5 +20,7 @@ router.use('/auth', authRoutes);
 
 router.use('/posts', postRoutes);
 router.use('/pc', pcRoutes);
+
+router.use('/problems', pbRoutes)
 
 export default router;
