@@ -36,6 +36,7 @@ import { AppState, InternalStateType } from './app.service';
 import { HomeComponent } from './home';
 import { ReactComponent } from './react';
 import { ProfileComponent } from './profile';
+import { MaterialModule } from './material'
 //import { angularProfileCard } from '../../components/main-profile/index';
 import { NoContentComponent } from './no-content';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -76,10 +77,7 @@ type StoreType = {
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    MatToolbarModule,
-    MatCardModule,
-    MatListModule,
-    MatGridListModule,
+    MaterialModule,
     RouterModule.forRoot(ROUTES, { useHash: false, preloadingStrategy: PreloadAllModules }),
     ApolloModule.forRoot(client),
   ],
