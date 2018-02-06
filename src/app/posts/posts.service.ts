@@ -6,6 +6,7 @@ import { Apollo, ApolloQueryObservable } from 'apollo-angular';
 import { ApolloQueryResult } from 'apollo-client';
 import { DeletePostInterface, UpdatePostInterface, PostsInterface } from './graphql/schema';
 import { RemovePostMutation, UpdatePostMutation } from './graphql/mutations';
+import callApi from '../utils/callApi'
 
 @Injectable()
 export class PostsService {
@@ -17,6 +18,8 @@ export class PostsService {
     }
 
     get(): ApolloQueryObservable<PostsInterface> {
+        
+        callApi()
         // Query posts data with observable variables
         this.posts = this.apollo.watchQuery<PostsInterface>({
             query: GetPostsQuery,

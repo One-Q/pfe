@@ -41,6 +41,8 @@ import { MaterialModule } from './material'
 import { NoContentComponent } from './no-content';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import callApi from './utils/callApi'
+
 import '../styles/styles.scss';
 import '../styles/headings.css';
 
