@@ -55,5 +55,14 @@ export default {
       })).min(0).required(),
       Local : Joi.string().required()
     }
+  },
+
+  //POST /api/problems
+  problem : {
+    body : {
+      Name : Joi.string().required(),
+      User : Joi.string().email().required(),
+      Description : Joi.string().required()
+    }
   }
 };
