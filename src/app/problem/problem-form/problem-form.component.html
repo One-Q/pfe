@@ -1,11 +1,12 @@
 <div class="problemContainer">
   <div class="problemForm">
       <h2>Soumission de problème</h2>
-      <form [formGroup]="form" (ngSubmit)="submitForm()">
+      <h3 class="success">{{response}}</h3>
+      <form [formGroup]="form" (ngSubmit)="submitForm()" *ngIf="machineName">
         <p>
           <mat-form-field class="inputFW">
             <input matInput formControlName="User" placeholder="Adresse email">
-            <mat-error>This field is required</mat-error>
+            <mat-error>L'adresse email est requise et doit être une adresse de Vinci</mat-error>
           </mat-form-field>
         </p>
         <p>
@@ -17,6 +18,7 @@
         <p>
           <mat-form-field class="inputFW">
             <textarea matInput placeholder="Description du problème (max 200 caractères)" formControlName="Description" rows="3"></textarea>
+            <mat-error>La description est requise</mat-error>
           </mat-form-field>
         </p>
         <p>

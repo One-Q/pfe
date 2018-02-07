@@ -8,12 +8,10 @@ h2 {
 
 .problemForm {
   margin: 0 auto;
-  width: 500px;
+  max-width: 500px;
 }
 
 .problemForm form {
-  min-width: 100px;
-  max-width: 500px;
   width: 100%;
 }
 
