@@ -9,6 +9,8 @@ import { PCListComponent } from './pclist.component'
 import { ListUploadComponent } from './list-upload/list-upload.component';
 import { MaterialModule } from '../material/material.module';
 import { AdminService } from './admin.service';
+import { HttpClientModule } from '@angular/common/http';
+import { MatTableModule } from '@angular/material'
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { AdminService } from './admin.service';
     RouterModule.forChild(routes),
     ReactiveFormsModule,
     RouterModule,
-    HttpModule
+    HttpClientModule,
+    MatTableModule
   ],
   providers: [AdminService]
 })
