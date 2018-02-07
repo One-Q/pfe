@@ -51,7 +51,7 @@ export default {
         Name: Joi.string().required(),
         IP: Joi.string().required(),
         MAC: Joi.string().required(),
-        Comment: Joi.string().required()
+        Comment: Joi.string()
       })).min(0).required(),
       Local : Joi.string().required()
     }
