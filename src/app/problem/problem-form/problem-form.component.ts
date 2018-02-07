@@ -18,6 +18,7 @@ export class ProblemFormComponent implements OnInit, OnDestroy {
   public errorMessages: Object = {}
   form: FormGroup
   image = {}
+  file: File;
 
   constructor(private formBuilder: FormBuilder, private router: Router,private route: ActivatedRoute, private service: ProblemsService){}
 
@@ -64,6 +65,8 @@ export class ProblemFormComponent implements OnInit, OnDestroy {
     let reader = new FileReader();
     if($event.target.files && $event.target.files.length > 0) {
       let file = $event.target.files[0];
+      this.file = file
+      console.log(this.file)
       reader.readAsDataURL(file);
       reader.onload = () => {
         this.image = {
@@ -78,7 +81,7 @@ export class ProblemFormComponent implements OnInit, OnDestroy {
   submitForm(){
     if(this.form.valid){
       let obj = this.form.value
-      obj.image = this.image
+      obj.image = this.file
       this.service.createProblem(obj).subscribe(data => console.log(data), err => {console.log(err)})
     }else{
       console.log("erreur")
