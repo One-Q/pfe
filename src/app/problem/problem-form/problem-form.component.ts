@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { ProblemsService } from '../problems.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   templateUrl: './problem-form.component.html',
@@ -16,18 +17,26 @@ export class ProblemFormComponent implements OnInit, OnDestroy {
   public machineName: string
   public machine: Object = {}
   public errorMessages: Object = {}
+  public response: string;
   form: FormGroup
   image = {}
   file: File;
 
-  constructor(private formBuilder: FormBuilder, private router: Router,private route: ActivatedRoute, private service: ProblemsService){}
+  constructor(private formBuilder: FormBuilder, private router: Router,private route: ActivatedRoute, private service: ProblemsService, private snackBar: MatSnackBar){}
 
   ngOnInit(): void {
+    this.errorMessages = {}
     this.sub = this.route.params.subscribe(params => {
       this.machineName = params['machineName'];
     });
     this.validateMachineName()
     this.constructForm()
+  }
+
+  openSnackBar(message: string) {
+    this.snackBar.open(message, '', {
+      duration: 3000,
+    });
   }
 
   validateMachineName(){
@@ -82,7 +91,7 @@ export class ProblemFormComponent implements OnInit, OnDestroy {
     if(this.form.valid){
       let obj = this.form.value
       obj.image = this.file
-      this.service.createProblem(obj).subscribe(data => console.log(data), err => {console.log(err)})
+      this.service.createProblem(obj).subscribe(data => this.openSnackBar('Votre demande a bien été enregistrée'), err => {console.log(err)})
     }else{
       console.log("erreur")
     }
@@ -90,7 +99,7 @@ export class ProblemFormComponent implements OnInit, OnDestroy {
 
   validateEmail(c: FormControl) {
     let EMAIL_REGEXP = /^.{2,20}\..{2,20}@(student\.vinci\.be|vinci\.be)$/
-  
+    
     return EMAIL_REGEXP.test(c.value) ? null : {
       validateEmail: {
         valid: false
