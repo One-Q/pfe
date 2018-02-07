@@ -72,7 +72,7 @@ PCSchema.statics = {
    * @returns {Promise<User, APIError>}
    */
   get(name) {
-    return this.findOne({Name:name})
+    return this.findOne({Name:name},{Problem:0,_id:0})
       .exec()
       .then((user) => {
         if (user) {
