@@ -47,7 +47,7 @@ function create(req, res, next) {
                 Active: pc.Active,
                 Problem: { User: req.body.User, Description: req.body.Description, Image: photo }
             })
-            newPc.save()
+            return newPc.save()
                 .then(savedPC => {
                     res.json(savedPC);
                     //return next();

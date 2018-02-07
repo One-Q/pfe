@@ -26,8 +26,7 @@ const PCSchema = new mongoose.Schema({
         required: true
     },
     Comment: {
-        type: String,
-        required: true
+        type: String
     },
     Active: {
         type: Boolean,
