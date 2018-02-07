@@ -75,15 +75,6 @@ export class ProblemFormComponent implements OnInit, OnDestroy {
     if($event.target.files && $event.target.files.length > 0) {
       let file = $event.target.files[0];
       this.file = file
-      console.log(this.file)
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.image = {
-          filename: file.name,
-          filetype: file.type,
-          value: reader.result.split(',')[1]
-        }
-      }
     }
   }
 
