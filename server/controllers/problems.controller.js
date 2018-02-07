@@ -45,7 +45,7 @@ function create(req, res, next) {
                 MAC: pc.MAC,
                 Comment: pc.Comment,
                 Active: pc.Active,
-                Problem: { User: req.body.User, Description: req.body.Description, Image: photo }
+                Problem: { User: req.body.User, Description: req.body.Description, Image: photo, DateCreated: Date.now() }
             })
             return newPc.save()
                 .then(savedPC => {

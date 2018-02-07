@@ -7,6 +7,7 @@ import csv from 'node-csv';
 
 import { Observable } from 'rxjs/Observable';
 import { PC } from './pclist/pc.model'; 
+import { Problem } from './list-problem/problem.model';
 
 @Injectable()
 export class AdminService {
@@ -29,6 +30,10 @@ export class AdminService {
 
   loadList(request : Object) {
     return this.http.post(getUrl() + `pc`, request)
+  }
+
+  getProblems() : Observable<Problem[]>{
+    return this.http.get<Problem[]>(getUrl()+'problems');
   }
 
 }
