@@ -1,5 +1,6 @@
 import { Component } from "@angular/core"
 import { AdminService } from '../admin.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
     selector: 'ListUpload',
@@ -10,11 +11,11 @@ import { AdminService } from '../admin.service';
 export class ListUploadComponent {
     private file: File;
 
-    constructor(private service: AdminService) { }
+    constructor(private service: AdminService, private snackBar: MatSnackBar) { }
 
     submitForm() {
         if (this.file == null)
-            console.log("manque un fichier chef")
+            this.openSnackBar('Fichier manquant')
         else {
             let obj = this
             let reader = new FileReader()
@@ -30,23 +31,30 @@ export class ListUploadComponent {
                     if (buffer[i] != "") {
                         let values = buffer[i].split(";")
                         request['import'].push({
-                            IP: values[0].slice(1,-1),
-                            Name: values[1].slice(1,-1),
-                            MAC: values[2].slice(1,-1),
-                            Comment: values[3].slice(1,-2)
+                            IP: values[0].slice(1, -1),
+                            Name: values[1].slice(1, -1),
+                            MAC: values[2].slice(1, -1),
+                            Comment: values[3].slice(1, -2)
                         })
                     }
                 }
-                obj.service.loadList(request).subscribe(data => console.log(data), err => {console.log(err)})
+                obj.service.loadList(request).subscribe(data => obj.openSnackBar('Fichier uploadé avec succès'), err => { console.log(err) })
             }
         }
     }
 
-        fileChange($event) {
-            let reader = new FileReader();
-            if ($event.target.files && $event.target.files.length > 0) {
-                let file = $event.target.files[0];
-                this.file = file
-            }
+    fileChange($event) {
+        let reader = new FileReader();
+        if ($event.target.files && $event.target.files.length > 0) {
+            let file = $event.target.files[0];
+            this.file = file
         }
     }
+
+    openSnackBar(message: string) {
+        this.snackBar.open(message, '', {
+            duration: 3000,
+        });
+    }
+}
+

@@ -30,7 +30,7 @@ function imports(req, res, next) {
   .then(oldPCs=>{
     //Desactivate PC from the local
     oldPCs.forEach(oldPC=>{
-      oldPC.Activate = false;
+      oldPC.Active = false;
       promises.push(oldPC.save());
     });
   });
