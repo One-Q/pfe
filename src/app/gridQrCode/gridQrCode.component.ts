@@ -10,8 +10,8 @@ import * as html2pdf from 'html2pdf.js';
 
 export class GridQrCodeComponent {
 
-  public qrcodelist: Array<String> = [];
-
+  @Input() qrcodelist: Array<String> = [];
+  
   constructor() {
     this.qrcodelist = ['2','didier','kyo','jul','sartre','total','98','jambon',
         'paul','element','suffixe','bebe','zair','babybel','loutre','didier','kyo','jul','sartre','total','98','jambon',

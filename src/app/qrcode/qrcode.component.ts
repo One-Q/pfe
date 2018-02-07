@@ -6,17 +6,24 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './qrcode.component.html'
 })
 
-export class QrcodeComponent {
-
-  public qrcodelist: Array<String> = [];
-  @Input() name: string;
+export class QrcodeComponent implements OnInit{
+  private _name: string;
   public url: string;
-  constructor() {
-    this.url = 'www.ipl-resolver.herokuapp.com/problem/'+name;
+  constructor() {};
+  
+  get name(): string {
+    return this._name;
   }
- 
-  ngOnInit() {
 
+  @Input()
+  set name(name: string) {
+    console.log('got name: ', name);
+    this._name = name;
   }
-    
+
+  ngOnInit() {
+    this.url = 'www.ipl-resolver.herokuapp.com/problem/'+this._name;
+    console.log('url: ', this.url);
+  }
+
 }
