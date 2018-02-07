@@ -12,34 +12,20 @@ import { PC } from './pc.model'
 
 export class PCListComponent implements OnInit{
     
-    pcList: PC[];
     dataSource = new PCDataSource(this.adminService);
     displayedColumns = ['Select','Name','Local','IP','MAC','Comment'];
 
     constructor(private adminService: AdminService){
-        this.dataSource.connect().subscribe(
-            function(pcs){
-                pcs.forEach((pc)=>{
-                    console.log(pc);
-                });
-                this.pcList = pcs;
-            },
-            function(){
-
-            }
-        );
-        setInterval(function(){console.log(this.pcList)},1000);
+        setInterval(()=>{console.log(adminService.getSelectedPC())},1000)
     }
 
     ngOnInit(){
 
     }
 
-    getSelection(){
-       // this.dataSource.connect().
-        this.dataSource.connect().forEach(element => {
-        //    if(element.checked == true){}
-        });
+    private select(pc:PC,checked:boolean){
+       console.log("select "+pc.Name+" : "+checked);
+       (checked ? this.adminService.selectPC: this.adminService.unselectPC)(pc);
     }
    
 }
