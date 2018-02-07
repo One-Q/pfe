@@ -1,0 +1,8 @@
+<div>
+    <h2>Ajout / Modification de machines</h2>
+    <form (ngSubmit)="submitForm()">
+        <label>Fichier</label><br><br>
+        <input type="file" (change)="fileChange($event)" name="listeMachines" accept=".txt, .csv"/><br><br>
+        <button mat-raised-button color="primary">Télécharger</button>
+    </form>
+</div>

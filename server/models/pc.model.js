@@ -26,8 +26,7 @@ const PCSchema = new mongoose.Schema({
         required: true
     },
     Comment: {
-        type: String,
-        required: true
+        type: String
     },
     Active: {
         type: Boolean,
@@ -72,7 +71,7 @@ PCSchema.statics = {
    * @returns {Promise<User, APIError>}
    */
   get(name) {
-    return this.findOne({Name:name})
+    return this.findOne({Name:name},{Problem:0,_id:0})
       .exec()
       .then((user) => {
         if (user) {

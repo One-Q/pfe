@@ -15,6 +15,7 @@ export const ROUTES: Routes = [
   { path: 'posts', loadChildren: './posts#PostsModule' },
   { path: 'profile', component: ProfileComponent },
   { path: 'problem', loadChildren: './problem#ProblemsModule' },
+  { path: 'admin', loadChildren: './admin#AdminModule' },
   { path: 'react', component: ReactComponent },
   { path: '**',    component: NoContentComponent },
 ];

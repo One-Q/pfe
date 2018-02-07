@@ -20,14 +20,14 @@ export class ProblemsService {
   }
 
   createProblem(problem: Object){
-    console.log('roman')
     let form = new FormData()
     form.append('Name', problem['Name'])
     form.append('Description', problem['Description'])
     form.append('User', problem['User'])
     form.append('image', problem['image'])
-    console.log(problem['image'])
-    return this.http.post(getUrl()+ `problems`, form);
+    return this.http.post(getUrl()+ `problems`, form).map((res) => {
+      return res.json()
+    });
   }
 
 }
