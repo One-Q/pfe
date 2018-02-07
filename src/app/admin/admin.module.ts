@@ -8,6 +8,8 @@ import { routes } from './admin.routes'
 import { PCListComponent } from './pclist.component'
 import { MaterialModule } from '../material/material.module';
 import { AdminService } from './admin.service';
+import { HttpClientModule } from '@angular/common/http';
+import { MatTableModule } from '@angular/material'
 
 @NgModule({
   declarations: [
@@ -20,9 +22,10 @@ import { AdminService } from './admin.service';
     RouterModule.forChild(routes),
     ReactiveFormsModule,
     RouterModule,
-    HttpModule
+    HttpClientModule,
+    MatTableModule
   ],
-  //providers: [AdminService]
+  providers: [AdminService]
 })
 export class AdminModule {
   public static routes = routes

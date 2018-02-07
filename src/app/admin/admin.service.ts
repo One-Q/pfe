@@ -1,33 +1,29 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { Http, Headers, RequestOptions } from '@angular/http'
+import { HttpClient } from '@angular/common/http'
 import getUrl from '../utils/callApi'
+
+import { Observable } from 'rxjs/Observable';
+import { PC } from './pc.model'; 
 
 @Injectable()
 export class AdminService {
 
-  private options: Object
+  private options: Object;
+  private serviceURL = "/api/pc";
 
-  constructor(private http: Http) { 
+  constructor(private http: HttpClient) { 
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
     this.options = new RequestOptions({headers: headers});
   }
 
-  machineNameValid(machineName: string){
-    return this.http.get(getUrl() + `pc/${machineName}`)
-  }
-
-  createProblem(problem: Object){
-    console.log('roman')
-    let form = new FormData()
-    form.append('Name', problem['Name'])
-    form.append('Description', problem['Description'])
-    form.append('User', problem['User'])
-    form.append('image', problem['image'])
-    console.log(problem['image'])
-    return this.http.post(getUrl()+ `problems`, form);
+  getPC() : Observable<PC[]>{
+    //console.log("getPC");
+    //this.http.get<PC[]>(this.serviceURL).forEach(function(a){console.log(a);});
+    return this.http.get<PC[]>(this.serviceURL);
   }
 
 }
