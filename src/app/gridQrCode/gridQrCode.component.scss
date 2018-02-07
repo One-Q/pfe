@@ -1,0 +1,15 @@
+.listcard {
+    width: 21cm;
+}
+.column {
+    float: left;
+    width: 33%;
+}
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.empty {
+    height: 30px;
+}

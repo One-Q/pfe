@@ -23,7 +23,8 @@ import {
   MatGridListModule
 } from '@angular/material';
 import 'hammerjs';
-
+//import { QRCodeModule } from 'angularx-qrcode';
+import { QRCodeModule } from 'angular2-qrcode';
 /*
  * Platform and Environment providers/directives/pipes
  */
@@ -40,11 +41,14 @@ import { MaterialModule } from './material'
 //import { angularProfileCard } from '../../components/main-profile/index';
 import { NoContentComponent } from './no-content';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { QrcodeComponent } from './qrcode';
+import { GridQrCodeComponent } from './gridQrCode';
 
 import callApi from './utils/callApi'
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
+import { AdminComponent } from './admin/admin.component';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -69,6 +73,9 @@ type StoreType = {
     ReactComponent,
     ProfileComponent,
     NoContentComponent,
+    QrcodeComponent,
+    AdminComponent,
+    GridQrCodeComponent  
   ],
   /**
    * Import Angular's modules.
@@ -82,6 +89,7 @@ type StoreType = {
     MaterialModule,
     RouterModule.forRoot(ROUTES, { useHash: false, preloadingStrategy: PreloadAllModules }),
     ApolloModule.forRoot(client),
+    QRCodeModule,
   ],
   /**
    * Expose our Services and Providers into Angular's dependency injection.
