@@ -6,7 +6,7 @@ import getUrl from '../utils/callApi'
 import csv from 'node-csv';
 
 import { Observable } from 'rxjs/Observable';
-import { PC } from './pc.model'; 
+import { PC } from './pclist/pc.model'; 
 
 @Injectable()
 export class AdminService {
