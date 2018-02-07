@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core"
 import { Observable } from 'rxjs/Observable'
 import { DataSource } from '@angular/cdk/collections'
-import { AdminService } from './admin.service'
+import { AdminService } from '../admin.service'
 import { PC } from './pc.model'
 
 @Component({
@@ -11,17 +11,35 @@ import { PC } from './pc.model'
 })
 
 export class PCListComponent implements OnInit{
-
+    
+    pcList: PC[];
     dataSource = new PCDataSource(this.adminService);
     displayedColumns = ['Select','Name','Local','IP','MAC','Comment'];
-    //Local = DataSource[0].Local;
 
     constructor(private adminService: AdminService){
+        this.dataSource.connect().subscribe(
+            function(pcs){
+                pcs.forEach((pc)=>{
+                    console.log(pc);
+                });
+                this.pcList = pcs;
+            },
+            function(){
 
+            }
+        );
+        setInterval(function(){console.log(this.pcList)},1000);
     }
 
     ngOnInit(){
 
+    }
+
+    getSelection(){
+       // this.dataSource.connect().
+        this.dataSource.connect().forEach(element => {
+        //    if(element.checked == true){}
+        });
     }
    
 }
