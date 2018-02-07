@@ -11,10 +11,20 @@ let storage = multer.diskStorage({
     cb(null, 'images')
   },
   filename: function (req, file, cb) {
-    cb(null, 'problem_' + Date.now()+'.'+mime.extension(file.mimetype))
+    cb(null, 'problem_' + Date.now() + '.' + mime.extension(file.mimetype))
   }
 })
-let upload = multer({ storage: storage });
+let upload = multer({
+  storage: storage,
+  fileFilter: function (req, file, cb) {
+    var ext = mime.extension(file.mimetype);
+    console.log(ext)
+    if (ext !== 'png' && ext !== 'jpg' && ext !== 'gif' && ext !== 'jpeg' && ext !== 'svg') {
+      return cb(null, false)
+    }
+    cb(null, true)
+  }
+});
 
 const router = express.Router();
 
