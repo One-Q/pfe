@@ -12,11 +12,15 @@ import { AdminService } from './admin.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material'
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { GridQrCodeComponent } from './gridQrCode/index';
+import { QrcodeComponent } from './qrcode/index';
 
 @NgModule({
   declarations: [
     PCListComponent,
-    ListUploadComponent
+    ListUploadComponent,
+    GridQrCodeComponent,
+    QrcodeComponent
   ],
   imports: [
     CommonModule,

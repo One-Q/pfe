@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { QrcodeComponent } from './qrcode';
 import * as html2pdf from 'html2pdf.js';
 
@@ -8,22 +8,22 @@ import * as html2pdf from 'html2pdf.js';
   templateUrl: './gridQrCode.component.html'
 })
 
-export class GridQrCodeComponent {
+export class GridQrCodeComponent implements OnInit{
 
-  @Input() qrcodelist: Array<String> = [];
+  private qrcodelist: Array<String> = [];
   
-  constructor() {
+  constructor(){
     this.qrcodelist = ['2','didier','kyo','jul','sartre','total','98','jambon',
         'paul','element','suffixe','bebe','zair','babybel','loutre','didier','kyo','jul','sartre','total','98','jambon',
         'paul','element','suffixe','bebe','zair','babybel','loutre','didier','kyo','jul','sartre','total','98','jambon',
         'paul','element','suffixe','bebe','zair','babybel','loutre','didier','kyo','jul','sartre','total','98','jambon',
         'paul','element','suffixe','bebe','zair','babybel','loutre'];
+  };
+
+  ngOnInit(): void {
+    //this.qrcodelist = AdminService.getPC();
   }
 
-  ngAfterViewChecked(){
-    //this.exportPDF();
-  }
-  
   exportPDF(){
     var element = document.getElementById('results');
     html2pdf(element, {
@@ -35,8 +35,9 @@ export class GridQrCodeComponent {
     });
   }
 
-  ngOnInit() {
 
+  ngAfterViewInit() {
+    this.exportPDF();
   }
     
 }

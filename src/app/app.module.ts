@@ -23,8 +23,8 @@ import {
   MatGridListModule
 } from '@angular/material';
 import 'hammerjs';
-//import { QRCodeModule } from 'angularx-qrcode';
-import { QRCodeModule } from 'angular2-qrcode';
+import { QRCodeModule } from 'angularx-qrcode';
+//import { QRCodeModule } from 'angular2-qrcode';
 /*
  * Platform and Environment providers/directives/pipes
  */
@@ -41,8 +41,8 @@ import { MaterialModule } from './material'
 //import { angularProfileCard } from '../../components/main-profile/index';
 import { NoContentComponent } from './no-content';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { QrcodeComponent } from './qrcode';
-import { GridQrCodeComponent } from './gridQrCode';
+import { QrcodeComponent } from './admin/qrcode';
+import { GridQrCodeComponent } from './admin/gridQrCode';
 
 import callApi from './utils/callApi'
 
@@ -97,6 +97,9 @@ type StoreType = {
   providers: [
     ENV_PROVIDERS,
     APP_PROVIDERS
+  ],
+  entryComponents: [
+    GridQrCodeComponent
   ]
 })
 export class AppModule {

@@ -9,9 +9,10 @@ import { NoContentComponent } from './no-content';
 
 import { DataResolver } from './app.resolver';
 import { GridQrCodeComponent } from './gridQrCode/index';
+import { AdminComponent } from './admin/index';
 
 export const ROUTES: Routes = [
-  { path: '',      component: GridQrCodeComponent },
+  { path: '',      component: AdminComponent },
   { path: 'posts', loadChildren: './posts#PostsModule' },
   { path: 'profile', component: ProfileComponent },
   { path: 'problem', loadChildren: './problem#ProblemsModule' },

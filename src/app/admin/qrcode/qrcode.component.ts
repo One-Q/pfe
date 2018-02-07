@@ -22,7 +22,7 @@ export class QrcodeComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.url = 'www.ipl-resolver.herokuapp.com/problem/'+this._name;
+    this.url = 'ipl-resolver.herokuapp.com/problem/'+this._name;
     console.log('url: ', this.url);
   }
 

@@ -2,7 +2,7 @@
 <div class="qrcard">
     <p class=titreqr>{{name}}</p>
     <div class="qrimg">
-        <qr-code [value]="url" [size]="200" [level]="'M'" [canvas]="true"></qr-code>
+        <qrcode [qrdata]="url" [size]="200" [level]="'M'"></qrcode>
     </div>  
     <p class=comqr>
         Scanner ce QR Code<br />
