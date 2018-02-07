@@ -18,7 +18,6 @@ let upload = multer({
   storage: storage,
   fileFilter: function (req, file, cb) {
     var ext = mime.extension(file.mimetype);
-    console.log(ext)
     if (ext !== 'png' && ext !== 'jpg' && ext !== 'gif' && ext !== 'jpeg' && ext !== 'svg') {
       return cb(null, false)
     }
@@ -33,6 +32,7 @@ router.route('/')
   .get(pbCtrl.list)
 
   /** POST /api/problem - create a new problem */
-  .post(/*validate(paramValidation.problem), */upload.single('image'), pbCtrl.create);
+  // validation in comment because the request isn't a JSON request
+  .post(/*validate(paramValidation.problem)*/ upload.single('image'), pbCtrl.create);
 
 export default router;
