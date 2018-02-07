@@ -8,11 +8,14 @@ import csv from 'node-csv';
 import { Observable } from 'rxjs/Observable';
 import { PC } from './pclist/pc.model'; 
 
+//const equal = require('deep-equal');
+
 @Injectable()
 export class AdminService {
 
   private options: Object;
   private serviceURL = "/api/pc";
+  pcselected : Array<PC> = new Array<PC>();
   
   constructor(private http: HttpClient) { 
     const headers = new Headers();
@@ -22,9 +25,23 @@ export class AdminService {
   }
 
   getPC() : Observable<PC[]>{
-    //console.log("getPC");
-    //this.http.get<PC[]>(this.serviceURL).forEach(function(a){console.log(a);});
     return this.http.get<PC[]>(this.serviceURL);
+  }
+
+  selectPC(pc:PC) : void{
+    /*if(this.PCSelected.find(e => equal(e,pc))){
+      return;
+    }*/
+    console.log(typeof(this));
+    console.log(this);
+    this.pcselected.push(pc);
+  }
+  unselectPC(pc:PC) : void{
+    this.pcselected.splice(this.pcselected.indexOf(pc), 1);
+  }
+
+  getSelectedPC() : PC[]{
+    return this.pcselected;
   }
 
   loadList(request : Object) {
