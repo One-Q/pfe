@@ -38,7 +38,7 @@ export class AdminService {
   }
 
   isEmpty() : boolean {
-    return this.PCSelected.some(x => {return true});
+    return this.selection.some(x => {return true});
   }
 
   loadList(request : Object) {
