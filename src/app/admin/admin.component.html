@@ -1,7 +1,9 @@
 <div class="container">
     <ListUpload></ListUpload>
-    <PClist></PClist>  
-    <button  class="pdf" (click)='savePDF()' mat-raised-button color="primary">SAVE QR CODE</button>
+    <PClist></PClist>
+    <div [hidden]="!this.service.isEmpty()">
+            <button class="pdf" (click)='savePDF()' mat-raised-button color="primary">SAVE QR CODE</button>
+    </div>   
     <ListProblem></ListProblem>
     <div #entry></div>
 </div>

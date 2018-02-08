@@ -1,9 +1,10 @@
-import { Component, OnInit } from "@angular/core"
+import { Component, OnInit, ViewChild } from "@angular/core"
 import { Observable } from 'rxjs/Observable'
 import { DataSource } from '@angular/cdk/collections'
 import { AdminService } from '../admin.service'
 import { PC } from './pc.model'
 import { SelectionModel } from '@angular/cdk/collections'
+import {MatPaginator} from '@angular/material'
 
 @Component({
     selector : 'PClist',
@@ -20,11 +21,14 @@ export class PCListComponent implements OnInit{
     allowMultiSelect = true;
     selection = new SelectionModel<string>(this.allowMultiSelect, this.initialSelection);
 
+    @ViewChild(MatPaginator) paginator: MatPaginator;
+
     constructor(private adminService: AdminService){
+        
     }
 
     ngOnInit(){
-
+        
     }
 
     /** Whether the number of selected elements matches the total number of rows. */

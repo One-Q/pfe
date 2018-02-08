@@ -37,6 +37,10 @@ export class AdminService {
     return this.selection;
   }
 
+  isEmpty() : boolean {
+    return this.selection.some(x => {return true});
+  }
+
   loadList(request : Object) {
     return this.http.post(getUrl() + `pc`, request)
   }
