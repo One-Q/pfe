@@ -23,7 +23,13 @@ export class PCListComponent implements OnInit{
 
     }
 
-    select(pc:PC,checked:boolean){
+    private isAllSelected() {
+        const numSelected = this.adminService.getSelectedPC().length;
+        const numRows = this.dataSource.data.length;
+        return numSelected == numRows;
+    }
+
+    private select(pc:PC,checked:boolean){
         if(checked){
             this.adminService.selectPC(pc);      
         }else{
@@ -47,4 +53,5 @@ export class PCDataSource extends DataSource<any>{
     disconnect(){
 
     }
+
 }
