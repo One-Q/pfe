@@ -1,5 +1,5 @@
 <div>
-    <h2>Liste des problèmes</h2>
+    <h2 *ngIf="problemsList.length != 0">Liste des problèmes</h2>
     <mat-card class="example-card" *ngFor="let problem of problemsList">
         <mat-card-header>
             <mat-card-title>Bug : {{problem.Name}} {{problem.Local}} ({{problem.Problem.User}})</mat-card-title>

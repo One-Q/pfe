@@ -11,7 +11,7 @@ import { Problem } from './problem.model';
 
 export class ListProblemComponent implements OnInit {
     dataSource = new ProblemDataSource(this.service);
-    problemsList : Problem[];
+    problemsList : Problem[] = [];
     displayedColumns = ['Name','Local','User','Description','Date','Image'];
 
     constructor(private service: AdminService) { }
