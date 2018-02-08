@@ -16,5 +16,11 @@
                 <img src="/images/{{problem.Problem.Image}}" alt="{{problem.Problem.Image}}" height="300"/>
             </div>
         </mat-card-content>
+        <mat-slide-toggle 
+        [checked]="problem.Problem.Resolved"
+        [disabled]="problem.Problem.Resolved"
+        (change)="toggleResolved(problem)">
+            Résolu
+        </mat-slide-toggle>
     </mat-card>
 </div>

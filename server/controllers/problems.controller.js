@@ -6,7 +6,7 @@ import PC from '../models/pc.model';
  */
 function list(req, res, next) {
     return PC
-        .find({ Problem: { $ne: null }},{ '_id': 0 })
+        .find({ Problem: { $ne: null }})
         .select('Name Local Problem')
         .exec()
         .then(pbs => res.json(pbs))

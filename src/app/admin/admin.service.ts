@@ -53,4 +53,10 @@ export class AdminService {
     return this.http.get<Problem[]>(getUrl()+'problems');
   }
 
+  setResolved(id) {
+    return this.http.post(getUrl() + 'problems/resolve', {
+      id
+    })
+  }
+
 }

@@ -1,4 +1,5 @@
 export interface Problem {
+    _id: string;
     Name: string;
     Local: string;
     Problem: {
@@ -6,5 +7,6 @@ export interface Problem {
         Description: string;
         Image: string;
         DateCreated : Date;
+        Resolved: boolean;
     }
 }

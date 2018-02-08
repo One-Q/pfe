@@ -22,6 +22,10 @@ export class ListProblemComponent implements OnInit {
         })
     }
 
+    toggleResolved(problem: Problem){
+        this.service.setResolved(problem._id).subscribe(data => { problem.Problem.Resolved = true }, err => {console.log(err)})
+    }
+
 }
 
 export class ProblemDataSource extends DataSource<any>{
