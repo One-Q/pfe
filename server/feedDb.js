@@ -1,9 +1,9 @@
 import PC from './models/pc.model';
 
 export default function () {
-    PC.remove().exec();
+    //PC.remove().exec();
     PC.count().exec((err, count) => {
-        if (count > 0) {
+        if (true) {
             return;
         }
 
