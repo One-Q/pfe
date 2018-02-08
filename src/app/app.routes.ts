@@ -8,7 +8,7 @@ import { DataResolver } from './app.resolver';
 import { AdminComponent } from './admin/index';
 
 export const ROUTES: Routes = [
-  { path: 'home',      component: HomeComponent },
+  { path: '',      component: HomeComponent },
   { path: 'posts', loadChildren: './posts#PostsModule' },
   { path: 'profile', component: ProfileComponent },
   { path: 'problem', loadChildren: './problem#ProblemsModule' },
