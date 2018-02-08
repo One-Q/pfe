@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import util from 'util';
 
 //!\ Import à supprimer lorsque la db se remplira automatiquement
-import feedDb from './server/feedDb';
+
 
 // config should be imported before importing any other file
 import config from './server/config/config';
@@ -19,10 +19,7 @@ mongoose.Promise = Promise;
 
 // connect to mongo db
 const mongoUri = config.mongo.host;
-mongoose.connect(mongoUri, { server: { socketOptions: { keepAlive: 1 } } }).then(() => {
-  //!\ Import à supprimer lorsque la db se remplira automatiquement
-  feedDb();
-});
+mongoose.connect(mongoUri, { server: { socketOptions: { keepAlive: 1 } } });
 mongoose.connection.on('error', () => {
   throw new Error(`unable to connect to database: ${mongoUri}`);
 });
