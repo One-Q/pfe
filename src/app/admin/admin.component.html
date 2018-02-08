@@ -1,4 +1,7 @@
 <div class="container">
-    <button (click)='savePDF()'>SAVE PDF</button>
+    <ListUpload></ListUpload>
+    <PClist></PClist>  
+    <button  class="pdf" (click)='savePDF()' mat-raised-button color="primary">SAVE QR CODE</button>
+    <ListProblem></ListProblem>
     <div #entry></div>
 </div>

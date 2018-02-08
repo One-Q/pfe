@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 import { GridQrCodeComponent } from './gridQrCode'
+import { ListUploadComponent } from './list-upload'
+import { ListProblemComponent } from './list-problem'
+import { PCListComponent } from './pclist'
 import { AfterContentInit } from '@angular/core/src/metadata/lifecycle_hooks';
  
 @Component({

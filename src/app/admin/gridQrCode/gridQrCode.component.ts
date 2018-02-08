@@ -1,5 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { QrcodeComponent } from './qrcode';
+import { AdminService } from '../admin.service'
 import * as html2pdf from 'html2pdf.js';
 
 @Component({
@@ -12,7 +13,7 @@ export class GridQrCodeComponent implements OnInit{
 
   private qrcodelist: Array<String> = [];
   
-  constructor(){
+  constructor(private adminService: AdminService){
     this.qrcodelist = ['2','didier','kyo','jul','sartre','total','98','jambon',
         'paul','element','suffixe','bebe','zair','babybel','loutre','didier','kyo','jul','sartre','total','98','jambon',
         'paul','element','suffixe','bebe','zair','babybel','loutre','didier','kyo','jul','sartre','total','98','jambon',
@@ -21,7 +22,7 @@ export class GridQrCodeComponent implements OnInit{
   };
 
   ngOnInit(): void {
-    //this.qrcodelist = AdminService.getPC();
+    this.qrcodelist = this.adminService.getSelectedPC().map(x => x.Name);
   }
 
   exportPDF(){
