@@ -187,7 +187,7 @@
     "raw-loader": "0.5.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "reflect-metadata": "^0.1.10",
+    "reflect-metadata": "^0.1.12",
     "rimraf": "~2.6.1",
     "rxjs": "~5.0.2",
     "sass-loader": "^6.0.3",
