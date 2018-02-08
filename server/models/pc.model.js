@@ -48,6 +48,9 @@ const PCSchema = new mongoose.Schema({
             },
             Image: {
                 type: String
+            },
+            Resolved : {
+                type : Boolean
             }
         },
         required: false
