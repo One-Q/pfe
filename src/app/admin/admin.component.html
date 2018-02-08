@@ -1,9 +1,15 @@
 <div class="container">
-    <ListUpload></ListUpload>
-    <PClist></PClist>
-    <div [hidden]="!this.service.isEmpty()">
-            <button class="pdf" (click)='savePDF()' mat-raised-button color="primary">SAVE QR CODE</button>
-    </div>   
-    <ListProblem></ListProblem>
+    <mat-tab-group dynamicHeight>
+        <mat-tab label="Gestion des PC et QR Code">
+            <ListUpload></ListUpload>
+            <PClist></PClist>
+            <div [hidden]="!this.service.isEmpty()">
+                <button class="pdf" (click)='savePDF()' mat-raised-button color="primary">SAVE QR CODE</button>
+            </div>   
+        </mat-tab>
+        <mat-tab label="Gestion des problèmes">
+            <ListProblem></ListProblem>
+        </mat-tab>
+    </mat-tab-group>
     <div #entry></div>
 </div>

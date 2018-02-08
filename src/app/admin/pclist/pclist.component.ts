@@ -60,16 +60,18 @@ export class PCListComponent implements OnInit{
 export class PCDataSource extends DataSource<any>{
 
     list:PC[] = new Array<PC>();
+    observer;
 
     constructor(private adminService: AdminService){
         super();
+        this.observer = this.adminService.getPC();
         this.connect().subscribe(l=>{
             this.list = l;
         });
     }
 
     connect(): Observable<PC[]>{
-        return this.adminService.getPC();
+        return this.observer;
     }
 
     data(): PC[]{
