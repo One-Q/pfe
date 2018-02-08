@@ -16,16 +16,20 @@ export class PCListComponent implements OnInit{
     displayedColumns = ['Select','Name','Local','IP','MAC','Comment'];
 
     constructor(private adminService: AdminService){
-        setInterval(()=>{console.log(adminService.getSelectedPC())},1000)
+
     }
 
     ngOnInit(){
 
     }
 
-    private select(pc:PC,checked:boolean){
-       console.log("select "+pc.Name+" : "+checked);
-       (checked ? this.adminService.selectPC: this.adminService.unselectPC)(pc);
+    select(pc:PC,checked:boolean){
+        if(checked){
+            this.adminService.selectPC(pc);      
+        }else{
+            this.adminService.unselectPC(pc);
+        }
+        console.log(this.adminService.getSelectedPC());
     }
    
 }
