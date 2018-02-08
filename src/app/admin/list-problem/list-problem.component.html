@@ -17,10 +17,11 @@
             </div>
         </mat-card-content>
         <mat-slide-toggle 
-        [checked]="problem.Problem.Resolved"
+        [checked]="!problem.Problem.Resolved"
         [disabled]="problem.Problem.Resolved"
         (change)="toggleResolved(problem)">
-            Résolu
+            <span *ngIf="problem.Problem.Resolved; else resoudre">Résolu</span>
+            <ng-template #resoudre>Résoudre</ng-template>
         </mat-slide-toggle>
     </mat-card>
 </div>
