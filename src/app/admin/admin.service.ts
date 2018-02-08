@@ -15,7 +15,7 @@ export class AdminService {
 
   private options: Object;
   private serviceURL = "/api/pc";
-  private PCSelected : Array<PC> = new Array<PC>();
+  private selection = [];
   
   constructor(private http: HttpClient) { 
     const headers = new Headers();
@@ -28,20 +28,12 @@ export class AdminService {
     return this.http.get<PC[]>(this.serviceURL);
   }
 
-  selectPC(pc:PC) : void{
-    if(this.PCSelected.find(e => equal(e,pc))){
-      return;
-    }
-    this.PCSelected.push(pc);
-    return;
-  }
-  unselectPC(pc:PC) : void{
-    this.PCSelected.splice(this.PCSelected.indexOf(pc), 1);
-    return;
+  updateSelection(selection:Array<string>){
+    this.selection = selection;
   }
 
-  getSelectedPC() : PC[]{
-    return this.PCSelected;
+  getSelectedPC() : Array<string>{
+    return this.selection;
   }
 
   loadList(request : Object) {
