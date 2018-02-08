@@ -1,11 +1,19 @@
 <div>
     <h2>PC list</h2>
-   <mat-table [dataSource]='dataSource' >
+   <mat-table #table [dataSource]='dataSource' >
         <ng-container matColumnDef="Select">
             <!-- TODO : reduce width -->
-            <mat-header-cell *matHeaderCellDef></mat-header-cell>
-            <mat-cell *matCellDef="let pc">
-                <mat-checkbox (change)="select(pc,$event.checked)"></mat-checkbox>
+            <mat-header-cell *matHeaderCellDef>
+                    <mat-checkbox (change)="$event ? masterToggle() : null; notifyService()"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()">
+                    </mat-checkbox>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()"
+                                (change)="$event ? selection.toggle(row.Name) : null ; notifyService()"
+                                [checked]="selection.isSelected(row.Name)">
+                </mat-checkbox>
             </mat-cell>
         </ng-container>
         <ng-container matColumnDef="Name">
@@ -29,6 +37,6 @@
             <mat-cell *matCellDef="let pc"> {{pc.Comment}} </mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns" ></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns" (click)="selection.toggle(row)"></mat-row>
     </mat-table>
 </div>
