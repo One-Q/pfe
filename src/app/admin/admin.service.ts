@@ -4,7 +4,7 @@ import { Http, Headers, RequestOptions } from '@angular/http'
 import { HttpClient } from '@angular/common/http'
 import getUrl from '../utils/callApi'
 import csv from 'node-csv';
-
+import {BehaviorSubject} from "rxjs/Rx";
 import { Observable } from 'rxjs/Observable';
 import { PC } from './pclist/pc.model'; 
 import { Problem } from './list-problem/problem.model';
@@ -14,6 +14,13 @@ const equal = require('deep-equal');
 @Injectable()
 export class AdminService {
 
+  private messageSource = new BehaviorSubject<Array<String>>([]);
+  currentMessage = this.messageSource.asObservable();
+
+  changeMessage(message: Array<String>) {
+    this.messageSource.next(message)
+  }
+  
   private options: Object;
   private serviceURL = "/api/pc";
   private selection = [];
@@ -38,17 +45,13 @@ export class AdminService {
     this.observers.push(obs);
   }
 
-
-  updateSelection(selection:Array<string>){
-    this.selection = selection;
-  }
-
   getSelectedPC() : Array<string>{
+    console.log('getSelectedPc',this.selection);
     return this.selection;
   }
 
   isEmpty() : boolean {
-    return this.selection.some(x => {return true});
+    return this.messageSource.getValue().some(x => {return true});
   }
 
   loadList(request : Object) {

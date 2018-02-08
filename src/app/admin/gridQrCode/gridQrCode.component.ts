@@ -10,14 +10,13 @@ import * as html2pdf from 'html2pdf.js';
 })
 
 export class GridQrCodeComponent implements OnInit{
-
   private qrcodelist: Array<String> = [];
   
   constructor(private adminService: AdminService){
   };
 
   ngOnInit(): void {
-    this.qrcodelist = this.adminService.getSelectedPC();
+    this.adminService.currentMessage.subscribe(message => this.qrcodelist = message)
   }
 
   exportPDF(){

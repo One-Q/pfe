@@ -13,6 +13,7 @@ import {MatPaginator } from '@angular/material'
 })
 
 export class PCListComponent implements OnInit{
+    message;
     
     dataSource = new PCDataSource(this.adminService);
     displayedColumns = ['Select','Name','Local','IP','MAC','Comment'];
@@ -30,7 +31,7 @@ export class PCListComponent implements OnInit{
     }
 
     ngOnInit(){
-        
+        this.adminService.currentMessage.subscribe(message => this.message = message)
     }
 
     /** Whether the number of selected elements matches the total number of rows. */
@@ -52,7 +53,8 @@ export class PCListComponent implements OnInit{
     }
 
     private notifyService(){
-        this.adminService.updateSelection(this.selection.selected);
+        //this.adminService.updateSelection(this.selection.selected);
+        this.adminService.changeMessage(this.selection.selected);
     }
    
 }
