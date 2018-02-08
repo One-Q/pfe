@@ -4,6 +4,7 @@ import { ListUploadComponent } from './list-upload'
 import { ListProblemComponent } from './list-problem'
 import { PCListComponent } from './pclist'
 import { AfterContentInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { AdminService } from './admin.service';
  
 @Component({
   selector: 'app-admin',
@@ -15,7 +16,7 @@ export class AdminComponent implements AfterContentInit {
 
   @ViewChild('entry', { read: ViewContainerRef }) entry: ViewContainerRef;
 
-  constructor(private resolver: ComponentFactoryResolver){}
+  constructor(private resolver: ComponentFactoryResolver, private service: AdminService){}
 
   ngAfterContentInit(): void {
     this.gridQrCodeFactory = this.resolver.resolveComponentFactory(GridQrCodeComponent);

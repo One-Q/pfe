@@ -25,7 +25,7 @@ function get(req, res) {
  * @returns true if everything works
  */
 function imports(req, res, next) {
-  var promises = [];
+  /*var promises = [];
   PC.find({Local:req.body.Local}).exec()
   .then(oldPCs=>{
     //Desactivate PC from the local
@@ -34,7 +34,7 @@ function imports(req, res, next) {
       promises.push(oldPC.save());
     });
   });
-  Promise.all(promises).then(function(){
+  Promise.all(promises).then(function(){*/
     var nbrPc = 0;
     var array = [];
     req.body.import.forEach(function(pc) {
@@ -51,12 +51,19 @@ function imports(req, res, next) {
         nbrPc --;
         if(nbrPc <= 0){
           res.json(array);
-          //next();
+          PC.find({Local:req.body.Local , Name : { $nin : array.map(x=>x.Name) }}).exec()
+          .then(oldPCs=>{
+            //Desactivate PC
+            oldPCs.forEach(oldPC=>{
+              oldPC.Active = false;
+              oldPC.save();
+            });
+          });
         }
       });
     });
     //next();
-  });
+  //});
 }
 
 /**
@@ -73,7 +80,7 @@ function importPC(pc, res, finish) {
       pc = new PC(pc);
       return pc.save()
       .then(savedPC => {
-        finish(null,savedPC);
+         finish(null,savedPC);
       }).catch(e=>finish(e));
     }
     console.log(pc.Name+" update");

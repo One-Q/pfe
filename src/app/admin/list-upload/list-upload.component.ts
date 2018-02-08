@@ -38,7 +38,7 @@ export class ListUploadComponent {
                         })
                     }
                 }
-                obj.service.loadList(request).subscribe(data => obj.openSnackBar('Fichier uploadé avec succès'), err => { console.log(err) })
+                obj.service.loadList(request).subscribe(data => {obj.openSnackBar('Fichier uploadé avec succès');obj.service.notifyUpload();}, err => { console.log(err) })
             }
         }
     }

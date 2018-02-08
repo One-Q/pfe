@@ -2,7 +2,7 @@
   <div class="problemForm">
       <h2>Soumission de problème</h2>
       <h3 class="success">{{response}}</h3>
-      <form [formGroup]="form" (ngSubmit)="submitForm()" *ngIf="machineName">
+      <form [formGroup]="form" (ngSubmit)="submitForm()" *ngIf="machine">
         <p>
           <mat-form-field class="inputFW">
             <input matInput formControlName="User" placeholder="Adresse email">

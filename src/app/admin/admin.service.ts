@@ -16,7 +16,7 @@ export class AdminService {
 
   private options: Object;
   private serviceURL = "/api/pc";
-  private PCSelected : Array<PC> = new Array<PC>();
+  private selection = [];
   
   constructor(private http: HttpClient) { 
     const headers = new Headers();
@@ -28,21 +28,27 @@ export class AdminService {
   getPC() : Observable<PC[]>{
     return this.http.get<PC[]>(this.serviceURL);
   }
-
-  selectPC(pc:PC) : void{
-    if(this.PCSelected.find(e => equal(e,pc))){
-      return;
-    }
-    this.PCSelected.push(pc);
-    return;
+  observers = [];
+  notifyUpload() : void{
+    this.observers.forEach(obs => {
+      obs();
+    });
   }
-  unselectPC(pc:PC) : void{
-    this.PCSelected.splice(this.PCSelected.indexOf(pc), 1);
-    return;
+  onUpload(obs) : void{
+    this.observers.push(obs);
   }
 
-  getSelectedPC() : PC[]{
-    return this.PCSelected;
+
+  updateSelection(selection:Array<string>){
+    this.selection = selection;
+  }
+
+  getSelectedPC() : Array<string>{
+    return this.selection;
+  }
+
+  isEmpty() : boolean {
+    return this.selection.some(x => {return true});
   }
 
   loadList(request : Object) {
@@ -51,6 +57,12 @@ export class AdminService {
 
   getProblems() : Observable<Problem[]>{
     return this.http.get<Problem[]>(getUrl()+'problems');
+  }
+
+  setResolved(id) {
+    return this.http.post(getUrl() + 'problems/resolve', {
+      id
+    })
   }
 
 }
