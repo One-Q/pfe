@@ -8,6 +8,7 @@ function list(req, res, next) {
     return PC
         .find({ Problem: { $ne: null }})
         .select('Name Local Problem')
+        .sort([ ['Problem.Resolved', 1], ['Problem.DateCreated', -1]])
         .exec()
         .then(pbs => res.json(pbs))
         .catch(e => next(e));
