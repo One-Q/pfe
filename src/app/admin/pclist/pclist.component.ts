@@ -5,7 +5,7 @@ import { AdminService } from '../admin.service'
 import { PC } from './pc.model'
 
 @Component({
-   // selector : 'PClist',
+    selector : 'PClist',
     templateUrl: './pclist.component.html',
     styleUrls:['./pclist.component.scss']
 })
