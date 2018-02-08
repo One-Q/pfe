@@ -25,9 +25,7 @@ export class ProblemsService {
     form.append('Description', problem['Description'])
     form.append('User', problem['User'])
     form.append('image', problem['image'])
-    return this.http.post(getUrl()+ `problems`, form).map((res) => {
-      return res.json()
-    });
+    return this.http.post(getUrl()+ `problems`, form);
   }
 
 }
