@@ -26,7 +26,8 @@ export default function () {
             Problem: {
                 User: 'user.name@student.vinci.be',
                 Description: 'bug',
-                Date:Date.now
+                DateCreated:Date.now(),
+                Resolved : false
             }
         });
 

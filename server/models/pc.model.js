@@ -44,11 +44,13 @@ const PCSchema = new mongoose.Schema({
             },
             DateCreated: {
                 type: Date,
-                required: true,
                 default: Date.now
             },
             Image: {
                 type: String
+            },
+            Resolved : {
+                type : Boolean
             }
         },
         required: false

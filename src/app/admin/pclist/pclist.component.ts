@@ -6,7 +6,7 @@ import { PC } from './pc.model'
 import { SelectionModel } from '@angular/cdk/collections'
 
 @Component({
-   // selector : 'PClist',
+    selector : 'PClist',
     templateUrl: './pclist.component.html',
     styleUrls:['./pclist.component.scss']
 })
