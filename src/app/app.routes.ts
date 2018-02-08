@@ -11,4 +11,5 @@ export const ROUTES: Routes = [
   { path: '', component: HomeComponent },
   { path: 'problem', loadChildren: './problem#ProblemsModule' },
   { path: 'admin', component: AdminComponent },
+  { path: '**', component: NoContentComponent }
 ];
