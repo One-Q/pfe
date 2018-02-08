@@ -44,7 +44,6 @@ const PCSchema = new mongoose.Schema({
             },
             DateCreated: {
                 type: Date,
-                required: true,
                 default: Date.now
             },
             Image: {

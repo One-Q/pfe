@@ -1,0 +1,20 @@
+<div>
+    <h2>Liste des problèmes</h2>
+    <mat-card class="example-card" *ngFor="let problem of problemsList">
+        <mat-card-header>
+            <mat-card-title>Bug : {{problem.Name}} {{problem.Local}} ({{problem.Problem.User}})</mat-card-title>
+            <mat-card-subtitle>Le {{problem.Problem.DateCreated | date:'short'}}</mat-card-subtitle>
+        </mat-card-header>
+        <!--img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu" height="200" width="200"-->
+        <mat-card-content>
+            <h5>Description : </h5>
+            <p>
+                {{problem.Problem.Description}}
+            </p>
+            <div *ngIf="problem.Problem.Image != null">
+                <h5>Image : </h5><br>
+                <img src="/images/{{problem.Problem.Image}}" alt="{{problem.Problem.Image}}" height="300"/>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

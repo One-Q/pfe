@@ -50,8 +50,9 @@ if (config.env === 'development') {
   //   colorStatus: true // Color the status code (default green, 3XX cyan, 4XX yellow, 5XX red).
   // }));
 }
-app.use(express.static(path.join(appRoot.path, 'dist')));
 
+app.use(express.static(path.join(appRoot.path, 'dist')))
+app.use('/images', express.static(path.join(appRoot.path, 'images')));
 app.use('/api', routes);
 
 innograph.init('/api/graphql', app, {post: postCtrl});

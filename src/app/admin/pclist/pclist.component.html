@@ -1,11 +1,11 @@
 <div>
-    <h2>Liste des machines</h2>
+    <h2>PC list</h2>
    <mat-table [dataSource]='dataSource' >
         <ng-container matColumnDef="Select">
             <!-- TODO : reduce width -->
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let pc">
-                <mat-checkbox class="example-margin" [(ngModel)]="pc.checked"></mat-checkbox>
+                <mat-checkbox (change)="select(pc,$event.checked)"></mat-checkbox>
             </mat-cell>
         </ng-container>
         <ng-container matColumnDef="Name">
