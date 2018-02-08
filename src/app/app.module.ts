@@ -16,14 +16,8 @@ import {
   RouterModule,
   PreloadAllModules
 } from '@angular/router';
-import {
-  MatToolbarModule,
-  MatCardModule,
-  MatListModule,
-  MatGridListModule
-} from '@angular/material';
 import 'hammerjs';
-
+import { QRCodeModule } from 'angularx-qrcode';
 /*
  * Platform and Environment providers/directives/pipes
  */
@@ -45,6 +39,13 @@ import callApi from './utils/callApi'
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
+import { AdminComponent } from './admin/admin.component';
+import { AdminModule } from './admin/admin.module'
+import { PCListComponent } from './admin/pclist/index';
+import { ListUploadComponent } from './admin/list-upload/index';
+import { GridQrCodeComponent } from './admin/gridQrCode/index';
+import { QrcodeComponent } from './admin/qrcode/index';
+import { ListProblemComponent } from './admin/list-problem/index';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -69,6 +70,12 @@ type StoreType = {
     ReactComponent,
     ProfileComponent,
     NoContentComponent,
+    AdminComponent,
+    PCListComponent,
+    ListUploadComponent,
+    GridQrCodeComponent,
+    QrcodeComponent,
+    ListProblemComponent
   ],
   /**
    * Import Angular's modules.
@@ -82,6 +89,8 @@ type StoreType = {
     MaterialModule,
     RouterModule.forRoot(ROUTES, { useHash: false, preloadingStrategy: PreloadAllModules }),
     ApolloModule.forRoot(client),
+    AdminModule,
+    QRCodeModule
   ],
   /**
    * Expose our Services and Providers into Angular's dependency injection.
@@ -89,6 +98,9 @@ type StoreType = {
   providers: [
     ENV_PROVIDERS,
     APP_PROVIDERS
+  ],
+  entryComponents: [
+    GridQrCodeComponent
   ]
 })
 export class AppModule {
