@@ -22,11 +22,11 @@ export class PCListComponent implements OnInit{
     selection = new SelectionModel<string>(this.allowMultiSelect, this.initialSelection);
 
     constructor(private adminService: AdminService){
-        /*setInterval(()=>{
+        adminService.onUpload(()=>{
             this.dataSource = new PCDataSource(this.adminService);
             this.selection = new SelectionModel<string>(this.allowMultiSelect, this.initialSelection);
             this.notifyService();
-        },1000);*/
+        });
     }
 
     ngOnInit(){

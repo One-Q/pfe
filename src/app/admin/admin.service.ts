@@ -28,6 +28,16 @@ export class AdminService {
   getPC() : Observable<PC[]>{
     return this.http.get<PC[]>(this.serviceURL);
   }
+  observers = [];
+  notifyUpload() : void{
+    this.observers.forEach(obs => {
+      obs();
+    });
+  }
+  onUpload(obs) : void{
+    this.observers.push(obs);
+  }
+
 
   updateSelection(selection:Array<string>){
     this.selection = selection;
