@@ -1,5 +1,5 @@
 <div>
-    <h2>PC list</h2>
+    <h2>Liste des PC</h2>
    <mat-table #table [dataSource]='dataSource' >
         
         <ng-container matColumnDef="Select">
@@ -18,24 +18,24 @@
             </mat-cell>
         </ng-container>
         <ng-container matColumnDef="Name">
-            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-            <mat-cell *matCellDef="let pc"> {{pc.Name}} </mat-cell>
+            <mat-header-cell *matHeaderCellDef>Nom</mat-header-cell>
+            <mat-cell *matCellDef="let pc">{{pc.Name}}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="Local">
-            <mat-header-cell *matHeaderCellDef> Local </mat-header-cell>
-            <mat-cell *matCellDef="let pc"> {{pc.Local}} </mat-cell>
+            <mat-header-cell *matHeaderCellDef>Local</mat-header-cell>
+            <mat-cell *matCellDef="let pc">{{pc.Local}}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="IP">
-            <mat-header-cell *matHeaderCellDef> IP </mat-header-cell>
-            <mat-cell *matCellDef="let pc"> {{pc.IP}} </mat-cell>
+            <mat-header-cell *matHeaderCellDef>IP</mat-header-cell>
+            <mat-cell *matCellDef="let pc">{{pc.IP}}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="MAC">
-            <mat-header-cell *matHeaderCellDef> MAC </mat-header-cell>
-            <mat-cell *matCellDef="let pc"> {{pc.MAC}} </mat-cell>
+            <mat-header-cell *matHeaderCellDef>MAC</mat-header-cell>
+            <mat-cell *matCellDef="let pc">{{pc.MAC}}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="Comment">
-            <mat-header-cell *matHeaderCellDef> Comment </mat-header-cell>
-            <mat-cell *matCellDef="let pc"> {{pc.Comment}} </mat-cell>
+            <mat-header-cell *matHeaderCellDef>Commentaire</mat-header-cell>
+            <mat-cell *matCellDef="let pc">{{pc.Comment}}</mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns" ></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
