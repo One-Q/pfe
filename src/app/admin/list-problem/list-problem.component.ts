@@ -32,7 +32,7 @@ export class ListProblemComponent implements OnInit {
     toggleResolved(problem: Problem){
         this.service.setResolved(problem._id).subscribe(data => {
             problem.Problem.Resolved = true;
-            this.openSnackBar('Priblème résolu')  
+            this.openSnackBar('Problème résolu')  
         }, err => {
             this.openSnackBar(err.err)
         })
