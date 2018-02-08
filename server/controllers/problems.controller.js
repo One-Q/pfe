@@ -81,7 +81,8 @@ function resolve(req, res, next) {
             User: pc.Problem.User,
             Description: pc.Problem.Description,
             DateCreated: pc.Problem.DateCreated,
-            Resolved: true
+            Resolved: true,
+            Image: pc.Problem.Image
         }
         pc.save((err, updatedPc) => {
             if (err)
