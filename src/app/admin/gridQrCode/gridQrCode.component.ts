@@ -14,11 +14,6 @@ export class GridQrCodeComponent implements OnInit{
   private qrcodelist: Array<String> = [];
   
   constructor(private adminService: AdminService){
-    this.qrcodelist = ['2','didier','kyo','jul','sartre','total','98','jambon',
-        'paul','element','suffixe','bebe','zair','babybel','loutre','didier','kyo','jul','sartre','total','98','jambon',
-        'paul','element','suffixe','bebe','zair','babybel','loutre','didier','kyo','jul','sartre','total','98','jambon',
-        'paul','element','suffixe','bebe','zair','babybel','loutre','didier','kyo','jul','sartre','total','98','jambon',
-        'paul','element','suffixe','bebe','zair','babybel','loutre'];
   };
 
   ngOnInit(): void {
