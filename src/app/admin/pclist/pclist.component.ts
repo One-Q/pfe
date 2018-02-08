@@ -4,7 +4,7 @@ import { DataSource } from '@angular/cdk/collections'
 import { AdminService } from '../admin.service'
 import { PC } from './pc.model'
 import { SelectionModel } from '@angular/cdk/collections'
-import {MatPaginator} from '@angular/material'
+import {MatPaginator } from '@angular/material'
 
 @Component({
     selector : 'PClist',
@@ -21,10 +21,12 @@ export class PCListComponent implements OnInit{
     allowMultiSelect = true;
     selection = new SelectionModel<string>(this.allowMultiSelect, this.initialSelection);
 
-    @ViewChild(MatPaginator) paginator: MatPaginator;
-
     constructor(private adminService: AdminService){
-        
+        /*setInterval(()=>{
+            this.dataSource = new PCDataSource(this.adminService);
+            this.selection = new SelectionModel<string>(this.allowMultiSelect, this.initialSelection);
+            this.notifyService();
+        },1000);*/
     }
 
     ngOnInit(){

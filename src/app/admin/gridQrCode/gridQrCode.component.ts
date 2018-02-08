@@ -22,7 +22,7 @@ export class GridQrCodeComponent implements OnInit{
   };
 
   ngOnInit(): void {
-    this.qrcodelist = this.adminService.getSelectedPC().map(x => x.Name);
+    this.qrcodelist = this.adminService.getSelectedPC();
   }
 
   exportPDF(){
