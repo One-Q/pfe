@@ -14,15 +14,10 @@ export class GridQrCodeComponent implements OnInit{
   private qrcodelist: Array<String> = [];
   
   constructor(private adminService: AdminService){
-    this.qrcodelist = ['2','didier','kyo','jul','sartre','total','98','jambon',
-        'paul','element','suffixe','bebe','zair','babybel','loutre','didier','kyo','jul','sartre','total','98','jambon',
-        'paul','element','suffixe','bebe','zair','babybel','loutre','didier','kyo','jul','sartre','total','98','jambon',
-        'paul','element','suffixe','bebe','zair','babybel','loutre','didier','kyo','jul','sartre','total','98','jambon',
-        'paul','element','suffixe','bebe','zair','babybel','loutre'];
   };
 
   ngOnInit(): void {
-    this.qrcodelist = this.adminService.getSelectedPC().map(x => x.Name);
+    this.qrcodelist = this.adminService.getSelectedPC();
   }
 
   exportPDF(){
