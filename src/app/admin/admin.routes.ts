@@ -4,6 +4,6 @@ import { ListProblemComponent } from './list-problem/list-problem.component';
 
 export const routes = [
   {
-    path: '', component: PCListComponent
+    path: '', component: ListProblemComponent
   }
 ]
