@@ -31,8 +31,11 @@ router.route('/')
   /** GET /api/problems - Get list of Problems */
   .get(pbCtrl.list)
 
-  /** POST /api/problem - create a new problem */
+  /** POST /api/problems - create a new problem */
   // validation in comment because the request isn't a JSON request
   .post(/*validate(paramValidation.problem)*/ upload.single('image'), pbCtrl.create);
 
+router.route('/resolve')
+  /** POST /api/problems/resolve - Resolve a problem   */
+  .post(pbCtrl.resolve)
 export default router;
