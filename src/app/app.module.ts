@@ -46,6 +46,7 @@ import { ListUploadComponent } from './admin/list-upload/index';
 import { GridQrCodeComponent } from './admin/gridQrCode/index';
 import { QrcodeComponent } from './admin/qrcode/index';
 import { ListProblemComponent } from './admin/list-problem/index';
+import { SandboxComponent } from './sandbox';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -67,6 +68,7 @@ type StoreType = {
   declarations: [
     AppComponent,
     HomeComponent,
+    SandboxComponent,
     ReactComponent,
     ProfileComponent,
     NoContentComponent,
