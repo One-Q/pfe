@@ -2,4 +2,21 @@
   <h1>Sandbox</h1>
   <button mat-raised-button color="primary" *ngIf="isVisible" (click)="isVisible=false">Click to Hide</button>
   <button mat-raised-button color="primary" [disabled]="isDisabled" (click)="isDisabled=true">Click to Disable</button>
+
+  <form style="margin-top: 50px" [formGroup]="form" (ngSubmit)="submit()">
+    <select formControlName="role">
+      <option value="student">Student</option>
+      <option value="teacher">Teacher</option>
+    </select>
+    <br>
+    <mat-form-field>
+      <input matInput placeholder="Login" formControlName="login">
+    </mat-form-field>
+    <br>
+    <mat-form-field *ngIf="checkRole()">
+      <input matInput placeholder="Password" formControlName="password">
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" type="submit">Submit</button>
+  </form>
 </div>
