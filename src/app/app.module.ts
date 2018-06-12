@@ -47,6 +47,7 @@ import { GridQrCodeComponent } from './admin/gridQrCode/index';
 import { QrcodeComponent } from './admin/qrcode/index';
 import { ListProblemComponent } from './admin/list-problem/index';
 import { SandboxComponent } from './sandbox';
+import { FileComponent } from './sandbox/file/file.component';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -69,6 +70,7 @@ type StoreType = {
     AppComponent,
     HomeComponent,
     SandboxComponent,
+    FileComponent,
     ReactComponent,
     ProfileComponent,
     NoContentComponent,

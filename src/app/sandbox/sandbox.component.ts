@@ -1,21 +1,28 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FileComponent } from './file/file.component';
 
 @Component({
   selector: 'sandbox',  // <home></home>
   styleUrls: [ './sandbox.component.scss' ],
   templateUrl: './sandbox.component.html'
 })
-export class SandboxComponent implements OnInit{
+export class SandboxComponent implements OnInit, AfterViewInit{
+
+  ngAfterViewInit(): void {
+    this.files = this.child.files
+  }
 
   ngOnInit(): void {
     this.buildForm()
   }
 
+  @ViewChild(FileComponent) child
   isVisible: boolean = true;
   isDisabled: boolean = false;
   form: FormGroup
+  files: [string]
 
   constructor(private formBuilder: FormBuilder) {
 
@@ -44,6 +51,7 @@ export class SandboxComponent implements OnInit{
 
   submit() {
     console.log(this.form.valid)
+    console.log(this.files)
   }
 
     
